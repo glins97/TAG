@@ -1,38 +1,46 @@
 #include "io.hpp"
 
-vector<list<int>> loadGraph(string filename){
-    vector<list<int>> graph;
-
-    ifstream file(filename);
-    int n1, n2, edges;
-    file >> n1 >> n2 >> edges;
-    
-    for (int i = 0; i < n1; i++){
-        graph.push_back(list<int>());
+int handleChoice(int minValue, int maxValue){
+    int choice = minValue - 1;
+    cin >> choice;
+    while (choice < minValue || choice > maxValue) {
+        cout << "Escolha invalida. Tente novamente: ";
+        cin >> choice;
     }
-
-    int v1, v2;
-    for (int i = 0; i < edges; i++){
-        file >> v1 >> v2;
-        graph[v2-1].push_back(v1-1);
-        graph[v1-1].push_back(v2-1);
-    }
-
-    return graph;
+    return choice;
 }
 
-void printList(list<int> l){
-    for (int i: l){
-        cout << i + 1 << " -> ";
-    }
-    cout << endl;
+void buildGraphOptionsMenu(Graph g){
+    vector<string> headers = {
+        "Listar todos os vertices e seus graus",
+        "Listar todos os cliques maximais",
+        "Listar o coeficiente de aglomeracao de todos os vertices",
+        "Imprimir o coeficiente aglomeracao medio do grafo",
+    };
+
+    vector<void (*)()> actions = {
+        g.showVerticeDegrees,
+        g.showMaximumCliques,
+        g.showVerticeAgglomerationCoefficients,
+        g.showAverageAgglomerationCoefficient,
+    };
+
+    requestMenuAction(headers, actions);
 }
 
-void printGraph(vector<list<int>> graph){
-    int count = 0;
-    for (list<int>l : graph){
+void requestMenuAction(vector<string> headers, vector<void (*)()> actions){
+    cout << "Escolha uma opçao abaixo:\n";
+    int count = 1;
+    for (string header: headers){
+        cout << "\t" << count << ". " << header << ";" << endl;
         count++;
-        cout << "[" << count << "] -> ";
-        printList(l); 
     }
+    cout << "\t" << count << ". Sair." << endl;
+    cout << endl;
+    cout << "Opçao: ";
+
+    int choice = handleChoice(1, headers.size() + 1);
+    if (choice == headers.size()) return;
+    
+    actions[choice - 1]();
 }
