@@ -40,7 +40,9 @@ void requestMenuAction(vector<string> headers, vector<void (*)()> actions){
     cout << "Opçao: ";
 
     int choice = handleChoice(1, headers.size() + 1);
-    if (choice == headers.size()) return;
+    if (choice != headers.size() + 1){
+        actions[choice - 1]();
+        requestMenuAction(headers, actions);
+    }
     
-    actions[choice - 1]();
 }
