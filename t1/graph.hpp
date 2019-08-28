@@ -15,6 +15,8 @@ public:
     int v;
     int e;
     vector<list<int>> adjacencyList;
+    vector<double> agglomerationCoefficients;
+    double averageAgglomerationCoefficient;
 
     Graph(string filename);
     void load();

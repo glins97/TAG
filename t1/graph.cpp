@@ -5,6 +5,8 @@ Graph::Graph(string filename){
     this->v = 0;
     this->e = 0;
     this->filename = filename;
+    this->agglomerationCoefficients = vector<double>();
+    this->averageAgglomerationCoefficient = 0;
     this->load();
 }
 
