@@ -80,8 +80,6 @@ void Graph::calculateAverageAgglomerationCoefficient(){
 }
 
 void Graph::showVerticeDegrees(){
-    cout << "@showVerticeDegrees" << endl;
-    
     int vectorCount = 0;
     for (list<int> verticeAdjancencyList: this->adjacencyList){
         vectorCount ++;
@@ -94,8 +92,6 @@ void Graph::showMaximumCliques(){
 }
 
 void Graph::showVerticesAgglomerationCoefficients(){
-    cout << "@showVerticesAgglomerationCoefficients" << endl;
-    
     int vectorCount = 0;
     for (list<int> verticeAdjancencyList: this->adjacencyList){
         vectorCount ++;
@@ -104,6 +100,5 @@ void Graph::showVerticesAgglomerationCoefficients(){
 }
 
 void Graph::showAverageAgglomerationCoefficient(){
-    cout << "@showAverageAgglomerationCoefficient" << endl;
     cout << "Coeficiente de Aglomeraçao Medio: " << this -> averageAgglomerationCoefficient << endl;
 }
