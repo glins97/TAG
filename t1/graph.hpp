@@ -21,7 +21,7 @@ public:
     void print();
     void showVerticeDegrees();
     void showMaximumCliques();
-    void showVerticeAgglomerationCoefficients();
+    void showVerticesAgglomerationCoefficients();
     void showAverageAgglomerationCoefficient();
 
 private:

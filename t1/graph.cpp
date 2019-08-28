@@ -57,8 +57,8 @@ void Graph::showMaximumCliques(){
     cout << "@showMaximumCliques" << endl;
 }
 
-void Graph::showVerticeAgglomerationCoefficients(){
-    cout << "@showVerticeAgglomerationCoefficients" << endl;
+void Graph::showVerticesAgglomerationCoefficients(){
+    cout << "@showVerticesAgglomerationCoefficients" << endl;
 }
 
 void Graph::showAverageAgglomerationCoefficient(){
