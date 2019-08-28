@@ -13,17 +13,16 @@ int handleChoice(int minValue, int maxValue){
 int requestMenuChoice(vector<string> headers){
     cout << "Escolha uma opçao abaixo:\n";
     int count = 1;
-    int quit = headers.size() + 1;
+    int maxValue = headers.size();
     for (string header: headers){
         cout << "\t" << count << ". " << header << ";" << endl;
         count++;
     }
-    cout << "\t" << count << ". Sair." << endl;
+    cout << "\t0. Sair." << endl;
     cout << endl;
     cout << "Opçao: ";
 
-    int choice = handleChoice(1, quit);
-    if (choice == quit) return 0;
+    int choice = handleChoice(0, maxValue);
     return choice;
 }
 
