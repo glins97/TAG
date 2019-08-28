@@ -7,11 +7,12 @@ int main(){
   
     int choice = requestGraphMenuChoice();
     while (choice){
-            switch (choice) {
+        switch (choice) {
             case 1: g.showVerticeDegrees(); break;
             case 2: g.showMaximumCliques(); break;
             case 3: g.showVerticeAgglomerationCoefficients(); break;
             case 4: g.showAverageAgglomerationCoefficient(); break;
+            default: break;
         }
     
         choice = requestGraphMenuChoice();
