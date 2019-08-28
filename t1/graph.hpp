@@ -24,7 +24,9 @@ public:
     void showVerticeDegrees();
     void showMaximumCliques();
     void showVerticesAgglomerationCoefficients();
+    void calculateVerticesAgglomerationCoefficients();
     void showAverageAgglomerationCoefficient();
+    void calculateAverageAgglomerationCoefficient();
 
 private:
     bool isLoaded;

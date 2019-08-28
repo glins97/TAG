@@ -5,9 +5,9 @@ Graph::Graph(string filename){
     this->v = 0;
     this->e = 0;
     this->filename = filename;
-    this->agglomerationCoefficients = vector<double>();
-    this->averageAgglomerationCoefficient = 0;
     this->load();
+    this->calculateVerticesAgglomerationCoefficients();
+    this->calculateAverageAgglomerationCoefficient();
 }
 
 void Graph::load(){
@@ -45,6 +45,40 @@ void Graph::print(){
     }
 }
 
+void Graph::calculateVerticesAgglomerationCoefficients(){
+    this->agglomerationCoefficients = vector<double>();
+
+    for (list<int> verticeAdjancencyList: this->adjacencyList){
+        int size = verticeAdjancencyList.size();
+        int edgesAmmount = 0;
+        int maxEdges = size * (size - 1);
+
+        for (int adjacentVertice: verticeAdjancencyList){
+            for (int adjacentAdjacentVertice: this->adjacencyList.at(adjacentVertice)){
+                for (int initialAdjacentVertice: verticeAdjancencyList){
+                    if (adjacentAdjacentVertice == initialAdjacentVertice){
+                        edgesAmmount += 1;
+                    }
+                }
+            }
+        } 
+        if (maxEdges){
+            this->agglomerationCoefficients.push_back((double) edgesAmmount/maxEdges);
+        }
+        else{
+            this->agglomerationCoefficients.push_back(0);
+        }
+    }
+}
+
+void Graph::calculateAverageAgglomerationCoefficient(){
+    double total = 0;
+    for (double value: this->agglomerationCoefficients){
+        total += value;
+    }
+    this->averageAgglomerationCoefficient = total / this->v;
+}
+
 void Graph::showVerticeDegrees(){
     cout << "@showVerticeDegrees" << endl;
     
@@ -61,8 +95,15 @@ void Graph::showMaximumCliques(){
 
 void Graph::showVerticesAgglomerationCoefficients(){
     cout << "@showVerticesAgglomerationCoefficients" << endl;
+    
+    int vectorCount = 0;
+    for (list<int> verticeAdjancencyList: this->adjacencyList){
+        vectorCount ++;
+        cout << "[" << vectorCount << "] -> " << this-> agglomerationCoefficients[vectorCount-1] << endl;
+    }
 }
 
 void Graph::showAverageAgglomerationCoefficient(){
     cout << "@showAverageAgglomerationCoefficient" << endl;
+    cout << "Coeficiente de Aglomeraçao Medio: " << this -> averageAgglomerationCoefficient << endl;
 }
