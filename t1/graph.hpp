@@ -14,7 +14,7 @@ public:
     string filename;
     int v;
     int e;
-    vector<list<int>>* adjacencyList;
+    vector<list<int>> adjacencyList;
 
     Graph(string filename);
     void load();
