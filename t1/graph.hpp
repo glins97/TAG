@@ -19,10 +19,10 @@ public:
     Graph(string filename);
     void load();
     void print();
-    static void showVerticeDegrees();
-    static void showMaximumCliques();
-    static void showVerticeAgglomerationCoefficients();
-    static void showAverageAgglomerationCoefficient();
+    void showVerticeDegrees();
+    void showMaximumCliques();
+    void showVerticeAgglomerationCoefficients();
+    void showAverageAgglomerationCoefficient();
 
 private:
     bool isLoaded;

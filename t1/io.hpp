@@ -5,7 +5,7 @@
 #include "graph.hpp"
 using namespace std;
 
-void requestMenuAction(vector<string> headers, vector<void (*)()> actions);
 int handleChoice(int minValue, int maxValue);
-void buildGraphOptionsMenu(Graph g);
+int requestMenuChoice(vector<string> headers);
+int requestGraphMenuChoice();
 
