@@ -127,14 +127,12 @@ void Graph::showMaximumCliques(){
     for (int i; i < this->adjacencyList.size(); i++) vertices.push_back(i); 
 
     cout << "Cliques maximais: " << endl;
-    int count = 0;
     for (list<int> clique: bronKerbosh(this, vertices)){
-        count++;
-        cout << count << " -> {";
+        cout << "  {";
         for (int v: clique){
             cout << v + 1 << ", ";
         }
-        cout << "}" << endl;
+        cout << "},\tSize: " << clique.size() << endl;
     }
     cout << endl;
 }
