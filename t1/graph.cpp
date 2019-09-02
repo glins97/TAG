@@ -81,11 +81,13 @@ void Graph::calculateAverageAgglomerationCoefficient(){
 }
 
 void Graph::showVerticeDegrees(){
+    cout << "Grau de cada vertice: " << endl;
     int vectorCount = 0;
     for (list<int> verticeAdjancencyList: this->adjacencyList){
         vectorCount ++;
-        cout << "[" << vectorCount << "] -> " << verticeAdjancencyList.size() << endl;
+        cout << vectorCount << " -> " << verticeAdjancencyList.size() << endl;
     }
+    cout << endl;
 }
 
 list<list<int>> bronKerbosh(Graph* g, list<int> P, list<int> R=list<int>(), list<int> X=list<int>(), list<list<int>>* result=new list<list<int>>(), int* count = new int(0)){
@@ -139,12 +141,15 @@ void Graph::showMaximumCliques(){
 
 void Graph::showVerticesAgglomerationCoefficients(){
     int vectorCount = 0;
+    cout << "Coeficientes de aglomeraçao por vertice: " << endl;
     for (list<int> verticeAdjancencyList: this->adjacencyList){
         vectorCount ++;
-        cout << "[" << vectorCount << "] -> " << this-> agglomerationCoefficients[vectorCount-1] << endl;
+        cout << vectorCount << " -> " << this-> agglomerationCoefficients[vectorCount-1] << endl;
     }
+    cout << endl;
 }
 
 void Graph::showAverageAgglomerationCoefficient(){
-    cout << "Coeficiente de Aglomeraçao Medio: " << this -> averageAgglomerationCoefficient << endl;
+    cout << "Coeficiente de aglomeraçao medio: " << this -> averageAgglomerationCoefficient << endl;
+    cout << endl;
 }
