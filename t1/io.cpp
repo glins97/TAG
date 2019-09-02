@@ -1,5 +1,9 @@
 #include "io.hpp"
 
+void clearConsole(){
+    printf("\033c");
+}
+
 int handleChoice(int minValue, int maxValue){
     int choice = minValue - 1;
     cin >> choice;
@@ -23,16 +27,6 @@ int requestMenuChoice(vector<string> headers){
     cout << "Opçao: ";
 
     int choice = handleChoice(0, maxValue);
+    clearConsole();
     return choice;
-}
-
-int requestGraphMenuChoice(){
-    vector<string> headers = {
-        "Listar todos os vertices e seus graus",
-        "Listar todos os cliques maximais",
-        "Listar o coeficiente de aglomeracao de todos os vertices",
-        "Imprimir o coeficiente aglomeracao medio do grafo",
-    };
-
-    return requestMenuChoice(headers);
 }
