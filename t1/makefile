@@ -1,8 +1,8 @@
 CFLAGS = -O
 CC = g++
 
-all: main.o graph.o io.o
-	$(CC) $(CFLAGS) -o all main.o graph.o io.o utils.o
+out: main.o utils.o graph.o io.o
+	$(CC) $(CFLAGS) -o out main.o graph.o io.o utils.o
 
 main.o: main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
