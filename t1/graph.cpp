@@ -132,7 +132,7 @@ void Graph::showMaximumCliques(){
         for (int v: clique){
             cout << v + 1 << ", ";
         }
-        cout << "},\tSize: " << clique.size() << endl;
+        cout << "},\tSIZE: " << clique.size() << endl;
     }
     cout << endl;
 }
