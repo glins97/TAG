@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "utils.hpp"
+
 using namespace std;
 
 class Graph{
@@ -24,11 +26,11 @@ public:
     void showVerticeDegrees();
     void showMaximumCliques();
     void showVerticesAgglomerationCoefficients();
-    void calculateVerticesAgglomerationCoefficients();
     void showAverageAgglomerationCoefficient();
-    void calculateAverageAgglomerationCoefficient();
 
 private:
     bool isLoaded;
+    void calculateAverageAgglomerationCoefficient();
+    void calculateVerticesAgglomerationCoefficients();
 };
 

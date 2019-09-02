@@ -1,4 +1,5 @@
 #include "graph.hpp"
+#include "utils.hpp"
 
 Graph::Graph(string filename){
     this->isLoaded = false;
@@ -87,8 +88,53 @@ void Graph::showVerticeDegrees(){
     }
 }
 
+list<list<int>> bronKerbosh(Graph* g, list<int> P, list<int> R=list<int>(), list<int> X=list<int>(), list<list<int>>* result=new list<list<int>>(), int* count = new int(0)){
+    list<int> rn = list<int>(R);
+    list<int> pn = list<int>(P);
+    list<int> xn = list<int>(X);
+
+    if (pn.empty() && xn.empty()){
+        result->push_back(rn);
+        return *result;
+    }
+
+    for (int vertice: P){
+        if (!in(pn, vertice)){
+            cout << vertice << endl;
+            continue;
+        }
+
+        bronKerbosh(
+            g,
+            intersectLists(pn, g->adjacencyList.at(vertice)),
+            uniteLists(rn, list<int>({vertice})),
+            intersectLists(xn, g->adjacencyList.at(vertice)),
+            result,
+            count
+        );
+
+        pn = relativeComplement(pn, list<int>({vertice}));
+        xn = uniteLists(xn, list<int>({vertice}));
+    }
+
+    return *result;
+}
+
 void Graph::showMaximumCliques(){
-    cout << "@showMaximumCliques" << endl;
+    list<int> vertices = list<int>();
+    for (int i; i < this->adjacencyList.size(); i++) vertices.push_back(i); 
+
+    cout << "Cliques maximais: " << endl;
+    int count = 0;
+    for (list<int> clique: bronKerbosh(this, vertices)){
+        count++;
+        cout << count << " -> {";
+        for (int v: clique){
+            cout << v + 1 << ", ";
+        }
+        cout << "}" << endl;
+    }
+    cout << endl;
 }
 
 void Graph::showVerticesAgglomerationCoefficients(){
