@@ -19,10 +19,12 @@ class Graph{
         vector<vector<int>> data;
 
         Graph(int mode);
+        void get_critical_paths(vector<vector<int>>* paths, vector<int>* values);
         void load(string courses, string requisites);
         void print();
 
     private:
+        void _get_critical_path(int vertice, vector<int>* path, int* value);
         void _load_ajacency_matrix(string filename);
         void _load_ajacency_list(string filename);
         void _load_courses(string filename);

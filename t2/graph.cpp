@@ -1,10 +1,85 @@
 #include "graph.hpp"
 #include "utils.hpp"
+#include <algorithm>  
 
 Graph::Graph(int mode){
     this->mode = mode;
     this->v = 0;
     this->e = 0;
+}
+
+void Graph::get_critical_paths(vector<vector<int>>* paths, vector<int>* values){
+    vector<int> candidates = vector<int>();
+    
+    for (int i = 0; i < this-> v; i++){
+        bool has_requisite = false;
+
+        for (int j = 0; j < this-> v; j++){
+            if ((this->data)[j][i] > 0){
+                has_requisite = true;
+                break;
+            }
+        }
+
+        if (!has_requisite) 
+            candidates.push_back(i);
+    }
+
+    auto _values = vector<int>();
+    auto _paths = vector<vector<int>>();
+    for (int candidate: candidates){
+        int value = 0;
+        vector<int> path = vector<int>();
+        this->_get_critical_path(candidate, &path, &value);
+
+        bool pushed = false;
+        for (int i = 0; i < _values.size(); i++){
+            if (value >= _values[i]){
+                pushed = true;
+                _values.insert(_values.begin() + i, value);
+                _paths.insert(_paths.begin() + i, path);
+                break;
+            }
+        }
+        if (!pushed){
+            _values.push_back(value);
+            _paths.push_back(path);
+        }
+    }
+
+    *paths = _paths;
+    *values = _values;
+}
+
+void Graph::_get_critical_path(int vertice, vector<int>* path, int* value){
+    int _value = this->courses[vertice].credits;
+    auto _path = vector<int>({vertice});
+
+    auto candidates = vector<int>();
+    for (int i = 0; i < this-> v; i++){
+        if (this->data[vertice][i] > 0)
+            candidates.push_back(i);
+    } 
+
+    auto max_path = vector<int>();
+    auto max_value = 0; 
+    for (int candidate: candidates){
+        auto c_value = this->courses[vertice].credits;
+        auto c_path = vector<int>({vertice});
+        this->_get_critical_path(candidate, &c_path, &c_value);   
+
+        if (c_value > max_value){
+            max_path = c_path;
+            max_value = c_value;
+        };
+    }
+
+    for (int v: max_path)
+        _path.push_back(v);
+    _value += max_value;
+
+    *path = vector<int>(_path); 
+    *value = int(_value);
 }
 
 void Graph::load(string courses, string requisites){
