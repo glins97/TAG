@@ -1,18 +1,21 @@
 CFLAGS = -O
 CC = g++
 
-out: main
+out: main.o
 	$(CC) $(CFLAGS) -o out *.o
 	./out
 
-main: graphs.o io main.cpp
+main.o: graph.o io.o main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
 
-graphs.o: graphs/archs/*.cpp graphs/items/*.cpp
-	$(CC) $(CFLAGS) -c graphs/archs/*.cpp graphs/items/*.cpp 
+graph.o: course.o graph.cpp
+	$(CC) $(CFLAGS) -c graph.cpp 
 
-io: io.cpp
+io.o: io.cpp
 	$(CC) $(CFLAGS) -c io.cpp
+
+course.o: course.cpp
+	$(CC) $(CFLAGS) -c course.cpp
 
 clean:
 	rm -f out *.o 
