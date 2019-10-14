@@ -4,6 +4,9 @@ CC = g++
 out: main.o
 	$(CC) $(CFLAGS) -o out *.o
 	./out
+
+svgs:
+	./out
 	dot -Tsvg resources/Path1 -o Path1.svg
 	dot -Tsvg resources/Path2 -o Path2.svg
 	dot -Tsvg resources/DAG -o DAG.svg
