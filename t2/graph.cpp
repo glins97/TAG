@@ -97,7 +97,6 @@ void Graph::load(string courses, string requisites){
 }
 
 void Graph::_load_courses(string filename){
-    cout << "_load_courses " << filename << endl;
     ifstream file(filename);
     this->courses = vector<Course>();
 
@@ -116,7 +115,6 @@ void Graph::_load_courses(string filename){
 }
 
 void Graph::_load_ajacency_matrix(string filename){
-    cout << "_load_ajacency_matrix " << filename << endl;
     ifstream file(filename);
     this->data = vector<vector<int>>();
     
