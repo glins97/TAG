@@ -17,7 +17,7 @@ void save_topological_order(string filename, vector<int> order, Graph graph){
     out << result;
     out.close();
 
-    ofstream out2(filename);
+    ofstream out2(filename+".txt");
     result = "";
 
     int value = 0;
@@ -36,7 +36,11 @@ void save_path(string filename, vector<int> path, Graph graph){
         bool found = false;
         for (int j = 0; j < v; j++){
             if(graph.data[i][j] > 0){
-                result += "\n\t" + to_string(graph.courses[i].code) + " -> " + to_string(graph.courses[j].code) + " [ label = " + to_string(graph.courses[i].credits) + " ]; ";
+                string ending = " ]; ";
+                if (in(path, i) && in(path, j))
+                    ending = ", color=\"0.002 0.999 0.999\" ]; ";
+
+                result += "\n\t" + to_string(graph.courses[i].code) + " -> " + to_string(graph.courses[j].code) + " [ label = " + to_string(graph.courses[i].credits) + ending;
                 found = true;
             }
         }
@@ -45,14 +49,11 @@ void save_path(string filename, vector<int> path, Graph graph){
         }
     }
 
-    for (int i = 0; i < path.size() - 1; i++){
-        result += "\n\t" + to_string(graph.courses[path[i]].code) + " -> " + to_string(graph.courses[path[i+1]].code) + " [ label = " + to_string(graph.courses[path[i]].credits) + ", color=\"0.002 0.999 0.999\" ]; ";
-    }
     result += "\n\t\tordering=out;\n}";
     out << result;
     out.close();
 
-    ofstream out2(filename);
+    ofstream out2(filename+".txt");
     result = "";
 
     int value = 0;

@@ -15,11 +15,14 @@ main.o: graph.o io.o main.cpp
 graph.o: course.o graph.cpp
 	$(CC) $(CFLAGS) -c graph.cpp 
 
-io.o: io.cpp
+io.o: utils.o io.cpp
 	$(CC) $(CFLAGS) -c io.cpp
+
+utils.o: utils.cpp
+	$(CC) $(CFLAGS) -c utils.cpp
 
 course.o: course.cpp
 	$(CC) $(CFLAGS) -c course.cpp
 
 clean:
-	rm -f out *.o 
+	rm -f *.o 

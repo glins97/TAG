@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "graph.hpp"
+#include "utils.hpp"
 
 using namespace std;
 
