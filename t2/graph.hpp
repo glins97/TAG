@@ -19,6 +19,7 @@ class Graph{
         vector<vector<int>> data;
 
         Graph(int mode);
+        vector<int> get_topological_order();
         void get_critical_paths(vector<vector<int>>* paths, vector<int>* values);
         void load(string courses, string requisites);
         void print();

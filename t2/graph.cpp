@@ -8,6 +8,48 @@ Graph::Graph(int mode){
     this->e = 0;
 }
 
+vector<int> Graph::get_topological_order(){
+    auto L = vector<int>();
+    auto S = vector<int>();
+    auto data = vector<vector<int>>(this->data);
+
+    // vertices without entering edges
+    for (int i = 0; i < this-> v; i++){
+        bool has_requisite = false;
+        for (int j = 0; j < this-> v; j++){
+            if ((data)[j][i] > 0){
+                has_requisite = true;
+                break;
+            }
+        }
+        if (!has_requisite) 
+            S.push_back(i);
+    }
+
+    while (S.size() > 0){
+        auto n = int(S.back());
+        S.pop_back();
+        L.push_back(n);
+        for (int m = 0; m < this->v; m++){
+            if (data[n][m] > 0){
+                data[n][m] = 0;
+
+                auto has_requisite = false;
+                for (int j = 0; j < this->v; j++){
+                    if (data[j][m] > 0){
+                        has_requisite = true;
+                        break;
+                    }
+                }
+                if (!has_requisite){
+                    S.push_back(m);
+                }
+            }
+        }
+    }
+    return L;
+}
+
 void Graph::get_critical_paths(vector<vector<int>>* paths, vector<int>* values){
     vector<int> candidates = vector<int>();
     

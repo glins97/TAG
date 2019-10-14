@@ -4,6 +4,20 @@ void clearConsole(){
     printf("\033c");
 }
 
+void save_topological_order(string filename, vector<int> order, Graph graph){
+    ofstream out(filename);
+    string result = "digraph finite_state_machine {\n\tsize=\"18,10\"\n\tnode [shape = circle];"; //headers    
+    
+    int v = graph.data.size();
+    for (int i = 0; i < v - 1; i++){
+        result += "\n\t" + graph.courses[order[i]].name + "_" + to_string(graph.courses[order[i]].code) + " -> " + graph.courses[order[i+1]].name + "_" + to_string(graph.courses[order[i + 1]].code) + " [ label = " + to_string(graph.courses[order[i]].credits) + " ]; ";
+    }
+
+    result += "\n\t\tordering=out;\n}";
+    out << result;
+    out.close();
+}
+
 void save_path(string filename, vector<int> path, Graph graph){
     ofstream out(filename);
 
