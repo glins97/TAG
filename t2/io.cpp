@@ -5,7 +5,7 @@ void clearConsole(){
 }
 
 void save_topological_order(string filename, vector<int> order, Graph graph){
-    ofstream out(filename);
+    ofstream out("resources/"+filename);
     string result = "digraph finite_state_machine {\n\tsize=\"18,10\"\n\tnode [shape = circle];"; //headers    
     
     int v = graph.data.size();
@@ -16,10 +16,19 @@ void save_topological_order(string filename, vector<int> order, Graph graph){
     result += "\n\t\tordering=out;\n}";
     out << result;
     out.close();
+
+    ofstream out2(filename);
+    result = "";
+
+    int value = 0;
+    for (int item: order){
+        result += graph.courses[item].name + " (" + to_string(graph.courses[item].code) + ") -> \n";
+    }        
+    out2 << result;
 }
 
 void save_path(string filename, vector<int> path, Graph graph){
-    ofstream out(filename);
+    ofstream out("resources/"+filename);
 
     string result = "digraph finite_state_machine {\n\tsize=\"18,10\"\n\tnode [shape = circle];"; //headers    
     int v = graph.data.size();
@@ -42,6 +51,17 @@ void save_path(string filename, vector<int> path, Graph graph){
     result += "\n\t\tordering=out;\n}";
     out << result;
     out.close();
+
+    ofstream out2(filename);
+    result = "";
+
+    int value = 0;
+    for (int item: path){
+        value += graph.courses[item].credits; 
+        result += graph.courses[item].name + " (" + to_string(graph.courses[item].code) + ") -> \n";
+    }        
+    result += to_string(value) + " créditos somados.";  
+    out2 << result;
 }
 
 void save_graph(string filename, Graph graph){
