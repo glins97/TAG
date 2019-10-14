@@ -61,7 +61,8 @@ void save_path(string filename, vector<int> path, Graph graph){
         value += graph.courses[item].credits; 
         result += graph.courses[item].name + " (" + to_string(graph.courses[item].code) + ") -> \n";
     }        
-    result += to_string(value) + " créditos somados.";  
+    result += "Peso total: " + to_string(value) + "\n";  
+    result += "Peso arestas: " + to_string(value - graph.courses[path[path.size() - 1]].credits);  
     out2 << result;
 }
 

@@ -1,4 +1,5 @@
 CÁLCULO_1 (113034) -> 
 CÁLCULO_2 (113042) -> 
 CALCULO_NUMERICO (113417) -> 
-16 créditos somados.
+Peso total: 16
+Peso arestas: 12
