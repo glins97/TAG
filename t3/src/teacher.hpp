@@ -3,7 +3,6 @@ using namespace std;
 
 #include <string>
 #include <vector>
-#include "school.hpp"
 
 class Teacher{
 public:
@@ -18,6 +17,4 @@ public:
     Teacher();
     Teacher(string id, int hab);
     void addPreference(string p);
-    bool isFree();
-    void propose(School* school, bool successfuly, int preference);
 };

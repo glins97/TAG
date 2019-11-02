@@ -25,27 +25,13 @@ string Teacher::repr(){
     for (auto p: *(this->preferences)){
         s = s + " " + p;
     }
-    s = s + " || " + this->chosenSchool;
-    return s;
-}
+    s = s + " || " + this->chosenSchool + "(";
 
-bool Teacher::isFree(){
-    return this->chosenSchool == "";
-}
 
-void Teacher::propose(School* school, bool successfuly, int preference){
-    this->propostions->push_back(school->id);
-
-    if (successfuly){
-        if (preference == 1){
-            school->chosenTeacherP1 = this->id;
-        }
-        else if (preference == 2){
-            school->chosenTeacherP2 = this->id;
-        }
-        this->chosenSchool = school->id;
+    for (auto prop: *(this->propostions)){
+        s = s + " " + prop;
     }
-   
-    if (this->propostions->size() == 50) 
-        this->finishedProposing = true;   
+
+    s = s + ") ";
+    return s;
 }
